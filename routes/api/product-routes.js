@@ -1,20 +1,25 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
-
 // get all products
 router.get('/', async (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
   const products = await Product.findAll();
   return res.status(200).json({ products });
 });
 
 // get one product
-router.get('/:id', (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  const foundProduct = await Product.findByPk(id, {
+    include: [
+      { model: Tag, through: ProductTag, as: 'product_tags' },
+      { model: Category, foreignKey: 'category_id' },
+    ],
+  });
+  if (!foundProduct)
+    return res.status(404).json({ message: `No Product with id ${id}` });
+
+  return res.status(200).json(foundProduct);
 });
 
 // create new product
