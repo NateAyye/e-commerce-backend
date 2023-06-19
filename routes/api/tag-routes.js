@@ -34,12 +34,31 @@ router.post('/', async (req, res) => {
   res.status(200).json({ message: '✅ Tag Created!', tag });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
+  const { id } = req.params;
+  const { tagName } = req.body;
+  const tag = await Tag.update({ tag_name: tagName }, { where: { id } });
+  if (!tag)
+    return res.status(400).json({
+      message: `❌ Nothing was updated tag with id(${id}) Must not exist`,
+    });
+
+  res.status(200).json({ message: '✅ tag Updated!' });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
+  const { id } = req.params;
+  const deletedTag = await Tag.destroy({
+    where: { id },
+  });
+  if (!deletedTag)
+    return res.status(400).json({
+      message: `❌ Nothing was deleted tag with id(${id}) Must not exist`,
+    });
+
+  res.status(200).json({ message: '✅ tag Deleted!' });
 });
 
 module.exports = router;
