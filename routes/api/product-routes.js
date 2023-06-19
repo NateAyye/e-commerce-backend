@@ -3,7 +3,12 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // get all products
 router.get('/', async (req, res) => {
-  const products = await Product.findAll();
+  const products = await Product.findAll({
+    include: [
+      { model: Tag, through: ProductTag, as: 'product_tags' },
+      { model: Category, foreignKey: 'category_id' },
+    ],
+  });
   return res.status(200).json({ products });
 });
 
@@ -19,7 +24,7 @@ router.get('/:id', async (req, res) => {
   if (!foundProduct)
     return res.status(404).json({ message: `No Product with id ${id}` });
 
-  return res.status(200).json(foundProduct);
+  return res.status(200).json(foundProduct.get({ plain: true }));
 });
 
 // create new product
@@ -96,8 +101,18 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
+  const { id } = req.params;
+  const deletedProduct = await Product.destroy({
+    where: { id },
+  });
+  if (!deletedProduct)
+    return res.status(400).json({
+      message: `❌ Nothing was deleted Product with id(${id}) Must not exist`,
+    });
+
+  res.status(200).json({ message: '✅ Product Deleted!' });
 });
 
 module.exports = router;
