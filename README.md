@@ -64,7 +64,16 @@ npm run watch
 External Link to FULL Example Video [Here!](https://drive.google.com/file/d/1V9iJGM6mBPSJOR9FF0jurgZq_SSK4GYV/view?usp=sharing)
 
 Setup Video:
-![Setup Video]()
+[![Setup Video](https://github.com/NateAyye/e-commerce-backend/blob/main/public/images/Setup.png?raw=true)](https://drive.google.com/file/d/1QHyyA5oyotiVHsRZ2ct0S1_DEUGWBjbi/view?usp=sharing)
+
+Products API Video:
+[![Setup Video](https://github.com/NateAyye/e-commerce-backend/blob/main/public/images/Products_API.png?raw=true)](https://drive.google.com/file/d/1lkd3xcucgQZX1NbgqMqb3i_4KppUQAVZ/view?usp=sharing)
+
+Tags API Video:
+[![Setup Video](https://github.com/NateAyye/e-commerce-backend/blob/main/public/images/Tags_API.png?raw=true)](https://drive.google.com/file/d/1WIOlS7Q5YwpYnEefxJEduKxBeqg5mqXE/view?usp=sharing)
+
+Category API Video:
+[![Setup Video](https://github.com/NateAyye/e-commerce-backend/blob/main/public/images/Category_API.png?raw=true)](https://drive.google.com/file/d/1lIrtqzI6qugvt1twVLpiYtFerAFan7Nd/view?usp=sharing)
 
 ## Contribution
 
