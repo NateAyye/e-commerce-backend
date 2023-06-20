@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   const tags = await Tag.findAll({
     include: [{ model: Product, through: ProductTag, as: 'products' }],
   });
-  return res.status(200).json({ tags });
+  return res.status(200).json(tags);
 });
 
 router.get('/:id', async (req, res) => {
@@ -27,9 +27,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // create a new tag
-  const { tagName } = req.params;
-  const tag = await Tag.create({ tag_name: tagName });
-  console.log(tag);
+  const { tag_name } = req.body;
+  const tag = await Tag.create({ tag_name });
   if (!tag) return res.status(500).json({ message: 'Something went Wrong' });
   res.status(200).json({ message: '✅ Tag Created!', tag });
 });
@@ -37,8 +36,8 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   const { id } = req.params;
-  const { tagName } = req.body;
-  const tag = await Tag.update({ tag_name: tagName }, { where: { id } });
+  const { tag_name } = req.body;
+  const tag = await Tag.update({ tag_name }, { where: { id } });
   if (!tag)
     return res.status(400).json({
       message: `❌ Nothing was updated tag with id(${id}) Must not exist`,

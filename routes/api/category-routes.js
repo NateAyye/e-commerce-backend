@@ -27,8 +27,8 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // create a new category
-  const { categoryName } = req.body;
-  const category = await Category.create({ category_name: categoryName });
+  const { category_name } = req.body;
+  const category = await Category.create({ category_name });
   if (!category)
     return res.status(500).json({ message: 'Something went Wrong' });
   res.status(200).json({ message: '✅ Category Created!', category });
@@ -37,11 +37,8 @@ router.post('/', async (req, res) => {
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   const { id } = req.params;
-  const { categoryName } = req.body;
-  const category = Category.update(
-    { category_name: categoryName },
-    { where: { id } },
-  );
+  const { category_name } = req.body;
+  const category = Category.update({ category_name }, { where: { id } });
   if (!category)
     return res.status(400).json({
       message: `❌ Nothing was updated category with id(${id}) Must not exist`,
