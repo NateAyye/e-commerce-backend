@@ -61,7 +61,10 @@ npm run watch
 
 ## Usage
 
-External Link to Video Example [Here!](https://drive.google.com/file/d/1voQsuJr4TMv2gzhiS2QDXGUprZ0cjDgR/view?usp=sharing)
+External Link to FULL Example Video [Here!](https://drive.google.com/file/d/1V9iJGM6mBPSJOR9FF0jurgZq_SSK4GYV/view?usp=sharing)
+
+Setup Video:
+![Setup Video]()
 
 ## Contribution
 
